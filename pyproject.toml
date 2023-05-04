@@ -12,6 +12,7 @@ pandas = "^2.0.1"
 scikit-learn = "^1.2.2"
 evidently = "^0.3.1"
 dvc = "^2.56.0"
+openpyxl = "^3.1.2"
 
 
 [build-system]
