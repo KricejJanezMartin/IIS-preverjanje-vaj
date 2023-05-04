@@ -1,12 +1,14 @@
 import pandas as pd
+import numpy as np
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.impute import SimpleImputer
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+import joblib
 
-# Load the CSV file into a pandas DataFrame
+
 df = pd.read_csv('../../data/processed/current_data.csv')
 
 print(df.columns)
@@ -37,3 +39,11 @@ pipeline.fit(X_train, y_train)
 
 score = pipeline.score(X_test, y_test)
 print(f'Test score: {score:.3f}')
+
+scores = cross_val_score(pipeline, df.drop('final_grade', axis=1), df['final_grade'], cv=5)
+mean_score = np.mean(scores)
+
+print(f'Mean score: {mean_score:.3f}')
+
+#shramba modela
+joblib.dump(pipeline, '../../models/model.pkl')
