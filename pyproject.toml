@@ -13,6 +13,8 @@ scikit-learn = "^1.2.2"
 evidently = "^0.3.1"
 dvc = "^2.56.0"
 openpyxl = "^3.1.2"
+numpy = "^1.24.3"
+ipython = "^8.13.2"
 
 
 [build-system]
